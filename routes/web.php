@@ -16,12 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [UserContorller::class, 'index'])->name('users.show');
+Route::get('/', [HomeController::class, 'index'])->name('home.show');
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/update', [UserContorller::class, 'index2'])->name('users.update');
-Route::post('/update', [HomeController::class, 'update'])->name('users.update');
+Route::get('/update', [HomeController::class, 'update'])->name('home.update');
+Route::post('/update', [HomeController::class, 'update'])->name('home.update');
+
+Route::post('/search',[UserContorller::class, 'search'])->name('users.search');
+Route::get('/search',[UserContorller::class, 'search'])->name('users.search');
