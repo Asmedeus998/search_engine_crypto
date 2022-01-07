@@ -2,31 +2,6 @@
 
 @section('content')
 
-
-{{ dd($data) }}
-
-<?php
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, 'https://api.blockchair.com/stats');
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER , false);
-    $result = curl_exec($curl);
-    $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    curl_close($curl);
-
-    // $string_result = json_encode($result); convert PHP to json structure
-    $array_result = json_decode($result, true); // convert json to PHP array
-    // print("<pre>" . print_r($array_result, true) . "</pre>");
-    $bitcoin_market_price = $array_result['data']['bitcoin']['data']['market_price_usd'];
-    $bitcoin_cash_market_price = $array_result['data']['bitcoin-cash']['data']['market_price_usd'];
-    $ethereum_market_price = $array_result['data']['ethereum']['data']['market_price_usd'];
-    $litecoin_market_price = $array_result['data']['litecoin']['data']['market_price_usd'];
-    // var_dump($array_result);
-    // / print("<pre>" . print_r($coin_name, true) . "</pre>");
-
-?>
-
-
 {{-- @foreach ($data as $item => $value) --}}
 
       {{-- <h5 class="card-title"> Market USD Price: {{dd($value['bitcoin']['data']['market_price_usd'])}}</h5> --}}
@@ -54,6 +29,21 @@
 <div class="container">
     {{-- {{dd($data)}} --}}
 
+    <div class="card mt-5" style="width: 50 rem;">
+        <img src={{$data['image']['large']}} class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title text-dark"> {{$data['symbol']}} ({{$data['name']}}) </h5>
+            <p class="card-text text-dark"> {{$data['description']['en']}} </p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Market Coin Rank: {{$data['market_cap_rank']}}</li>
+            <li class="list-group-item">Price in USD: {{$data['market_data']['current_price']['usd']}}</li>
+            <li class="list-group-item">Price change in 24 hour: {{$data['market_data']['price_change_24h']}}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{{$data['links']['homepage'][0]}}" class="card-link">Official Site</a>
+        </div>
+    </div>
 
 </div>
 {{-- @endforeach --}}
