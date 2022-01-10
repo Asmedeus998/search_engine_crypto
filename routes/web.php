@@ -22,7 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.show');
 Auth::routes();
 
 
-Route::get('/update/{id}', [HomeController::class, 'update'])->name('home.update');
+Route::get('/update/{id}', [HomeController::class, 'profile'])->name('home.profile');
 Route::post('/update/{id}', [HomeController::class, 'update'])->name('home.update');
 
 Route::post('/search',[UserContorller::class, 'search'])->name('users.search');

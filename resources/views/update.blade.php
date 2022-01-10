@@ -3,11 +3,12 @@
 @section('content')
 
 {{-- {{dd(Auth::user())}} --}}
-<form action="/update" method="POST" enctype="multipart/form-data">
+{{-- {{dd($user)}} --}}
+<form action="/update/{{($user->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     <table>
         <tr>
-            {{-- <td><input type="hidden" id="id" name="id" value="{{(Auth::user()->id)}}"></td> --}}
+            <td><input type="hidden" id="id" name="id" value={{$user->id}}></td>
             <td><label for="image">Image</label></td>
             <td><input type="file" id="image" name="image"></td>
         </tr>
