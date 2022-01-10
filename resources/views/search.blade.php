@@ -30,7 +30,7 @@
     {{-- {{dd($data)}} --}}
 
     <div class="card mt-5" style="width: 50 rem;">
-        <img src={{$data['image']['large']}} class="card-img-top" alt="...">
+        <img src={{$data['image']['large']}} class="card-img-top" width="150" height="150">
         <div class="card-body">
             <h5 class="card-title text-dark"> {{$data['symbol']}} ({{$data['name']}}) </h5>
             <p class="card-text text-dark"> {{$data['description']['en']}} </p>

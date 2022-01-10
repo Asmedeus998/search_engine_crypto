@@ -60,7 +60,7 @@
         @if (Auth::user() == null)
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Register</a>
-        @else
+        @elseif(Auth::user()->role == 1)
         <div class="dropdown">
 
                 <a class="btn dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -72,13 +72,33 @@
                     {{ Auth::user()->name }}
                 </button> --}}
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="/update/{{Auth::user()->id}}">Change Image</a></li>
                   <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <li><a class="dropdown-item" href="/update">Change Image</a></li>
+
                     <li><button type="submit" class="dropdown-item" href="{{ route('logout') }}">Logout</button></li>
                   </form>
                 </ul>
-              </div>
+        </div>
+        @elseif(Auth::user()->role == 2)
+        <div class="dropdown">
+            <a class="btn dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                {{-- {{ dd(Auth::user()) }} --}}
+                <img src="{{ Storage::url(Auth::user()->image) }}" width="20" alt="{{ Auth::user()->image }}">
+                {{-- <img width="100px" height="100px" src="{{ Storage::url($s->image)}}" alt=""> --}}
+            </a>
+            {{-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </button> --}}
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                @csrf
+                <li><a class="dropdown-item" href="/admin/users">{{ __('Manage User') }}</a></li>
+                <li><a class="dropdown-item" href="/update">Change Image</a></li>
+                <li><button type="submit" class="dropdown-item" href="{{ route('logout') }}">Logout</button></li>
+              </form>
+            </ul>
+    </div>
         @endif
       </nav>
     </div>

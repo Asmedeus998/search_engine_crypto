@@ -29,22 +29,43 @@ class HomeController extends Controller
         return view('home');
     }
 
+
     public function update(Request $request)
     {
-        $file = $request->file('image');
-        $extension = $request->file('image');
-        // for some reason I need to make imgName have a file and extension combine together to make delete to work.
-        $imgName = $file->getClientOriginalName().'_'.time().'_'.$extension->getClientOriginalExtension();
+        $id           = $request->id;
+        $old_image    = User::find($id);
+        // dd($old_image->image);
+        // $image_name = $request->hidden_image;
+        $image = $request->file('image');
 
-        Storage::putFileAs('public/images', $file, $imgName);
-        $imgPath = 'images/'.$imgName;
-        // dd(Auth::user());
-        $user = new User();
+        if($old_image->image=='images/anonymous.png')
+        {
+            if($image != '')
+            {
+                $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $image_name);
+            }
+        }
+        else{
 
-        // $user->price = $request->price;
-        $user->image = $imgPath;
+            if($image != '')
+            {
+                $image_name = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $image_name);
+                unlink('images/'.$old_image->avatar);
+            }
+        }
 
-        $user->save();
-        return redirect()->back();
+
+        $update = [
+
+            'id'           => $id,
+            'image'       => $image,
+        ];
+
+        User::where('id',$request->id)->update($update);
+        // return redirect()->back();
+        return view('update');
     }
+
 }

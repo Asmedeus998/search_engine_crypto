@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http as FacadesHttp;
 // use Illuminate\Support\Facedes\Http;
@@ -40,13 +41,22 @@ class UserContorller extends Controller
                 return view('search', ['data' => $result]);
                 // dd($result);
             }
-            if($i == $len - 1)
-            {
-                return view('search', ['data' => 'not found'])->with('error','not found');
-            }
+
         }
+        return redirect('/')->with('error','Coin not found');
         // return view('users', compact('data'));
         // return view('search', compact($result));
     }
 
+    public function view(){
+        $users = User::where('role', '1')->get();
+
+        return view('user', ['users' => $users]);
+    }
+
+    public function delete($id){
+        User::where('id', $id)->delete();
+
+        return back();
+    }
 }

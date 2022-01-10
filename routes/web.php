@@ -22,8 +22,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home.show');
 Auth::routes();
 
 
-Route::get('/update', [HomeController::class, 'update'])->name('home.update');
-Route::post('/update', [HomeController::class, 'update'])->name('home.update');
+Route::get('/update/{id}', [HomeController::class, 'update'])->name('home.update');
+Route::post('/update/{id}', [HomeController::class, 'update'])->name('home.update');
 
 Route::post('/search',[UserContorller::class, 'search'])->name('users.search');
 Route::get('/search',[UserContorller::class, 'search'])->name('users.search');
+
+Route::group(['prefix' => '/admin', 'middleware' => ['validateAdmin', 'auth']], function (){
+    Route::get('/users', [UserContorller::class, 'view']);
+    Route::delete('/user/{id}', [UserContorller::class, 'delete']);
+});
