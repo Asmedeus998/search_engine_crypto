@@ -115,7 +115,7 @@
   </main>
 
   <footer class="mt-auto text-white-50">
-    <p>2021 &copy; Anthony Christoper 2301911590</p>
+    <p>2021-2022 &copy; Anthony Christoper 2301911590</p>
   </footer>
 </div>
 
