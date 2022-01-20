@@ -14,3 +14,7 @@ Login as User:
 email: user@user.com
 
 password: password
+
+Link youtube:
+
+https://youtu.be/QnyyWwgLwB4
