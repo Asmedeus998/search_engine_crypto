@@ -26,8 +26,6 @@ class UserContorller extends Controller
         $coin_list = $client->coins()->getList();
         $len = count($coin_list);
         $i = 0;
-        // dd($coin_list);
-        // dd($coin_list[0]['id']['symbol']['name']);
         if($data == 'bitcoin')
         {
             $result = $client->coins()->getCoin('bitcoin', ['tickers' => 'false', 'market_data' => 'true']);
@@ -54,23 +52,18 @@ class UserContorller extends Controller
 
         for($i = 0; $i < $len; $i++)
         {
-            // dd($coin_list[$i]['id']['symbol']['name']);
-            // dd($coin_list[$i]);
-
-            // dd($len);
             if(($coin_list[$i]['symbol'] == $data))
             {
                 $data = $coin_list[$i]['id'];
-                // dd($data);
+
                 $result = $client->coins()->getCoin($data, ['tickers' => 'false', 'market_data' => 'true']);
                 return view('search', ['data' => $result]);
-                // dd($result);
+
             }
 
         }
         return redirect('/')->with('error','Coin not found');
-        // return view('users', compact('data'));
-        // return view('search', compact($result));
+
     }
 
     public function view(){

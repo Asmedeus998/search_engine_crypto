@@ -37,11 +37,9 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
-        // $user = User::all();
         $id           = $request->id;
         $old_image    = User::find($id);
-        // dd($old_image->image);
-        // $image_name = $request->hidden_image;
+
         $image = $request->file('image');
 
         if($old_image->image=='images/anonymous.png')
@@ -49,7 +47,6 @@ class HomeController extends Controller
             if($image != '')
             {
                 $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                // $image->move(public_path('images'), $image_name);
                 Storage::putFileAs('public/images', $image, $image_name);
                 $img_path = 'images/' . $image_name;
                 Storage::delete('public/images/' . $old_image->image);
@@ -59,8 +56,6 @@ class HomeController extends Controller
             if($image != '')
             {
                 $image_name = rand() . '.' . $image->getClientOriginalExtension();
-                // $image->move(public_path('images'), $image_name);
-                // unlink('images/'.$old_image->avatar);
 
                 Storage::putFileAs('public/images', $image, $image_name);
                 $img_path = 'images/' . $image_name;
@@ -77,7 +72,7 @@ class HomeController extends Controller
 
         User::where('id',$request->id)->update($update);
         return redirect()->back();
-        // return view('update', compact('user'));
+
     }
 
 }
