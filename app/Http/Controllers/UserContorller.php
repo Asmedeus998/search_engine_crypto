@@ -26,14 +26,39 @@ class UserContorller extends Controller
         $coin_list = $client->coins()->getList();
         $len = count($coin_list);
         $i = 0;
+        // dd($coin_list);
         // dd($coin_list[0]['id']['symbol']['name']);
+        if($data == 'bitcoin')
+        {
+            $result = $client->coins()->getCoin('bitcoin', ['tickers' => 'false', 'market_data' => 'true']);
+            return view('search', ['data' => $result]);
+        }
+
+        if($data == 'ethereum')
+        {
+            $result = $client->coins()->getCoin('ethereum', ['tickers' => 'false', 'market_data' => 'true']);
+            return view('search', ['data' => $result]);
+        }
+
+        if($data == 'litecoin')
+        {
+            $result = $client->coins()->getCoin('litecoin', ['tickers' => 'false', 'market_data' => 'true']);
+            return view('search', ['data' => $result]);
+        }
+
+        if($data == 'bitcoin-cash' || $data == 'bitcoin cash' )
+        {
+            $result = $client->coins()->getCoin('bitcoin-cash', ['tickers' => 'false', 'market_data' => 'true']);
+            return view('search', ['data' => $result]);
+        }
+
         for($i = 0; $i < $len; $i++)
         {
             // dd($coin_list[$i]['id']['symbol']['name']);
             // dd($coin_list[$i]);
 
             // dd($len);
-            if($coin_list[$i]['symbol'] == $data)
+            if(($coin_list[$i]['symbol'] == $data))
             {
                 $data = $coin_list[$i]['id'];
                 // dd($data);

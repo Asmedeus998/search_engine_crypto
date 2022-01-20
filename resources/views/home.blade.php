@@ -62,7 +62,7 @@
     <h4> Latest Market Price </h4>
     </div>
 
-      <a class="explore-card-wrap" href="/bitcoin">
+      <a class="explore-card-wrap">
         <div class="explore-card-content">
             <div class="explore-card__header"> <img src="https://loutre.blockchair.io/assets/svg/chains/bitcoin.svg?_nocache=1" class="explore-card__header__logo" alt="bitcoin logo" loading="lazy" />
                 <div class="explore-card__header__text ml-15">
@@ -82,7 +82,7 @@
         </div>
     </a>
 
-    <a class="explore-card-wrap mt-5" href="/ethereum">
+    <a class="explore-card-wrap mt-5">
         <div class="explore-card-content">
             <div class="explore-card__header"> <img src="https://loutre.blockchair.io/assets/svg/chains/ethereum.svg?_nocache=1" class="explore-card__header__logo" loading="lazy" />
                 <div class="explore-card__header__text ml-15">
@@ -102,7 +102,7 @@
         </div>
     </a>
 
-    <a class="explore-card-wrap mt-5" href="/bitcoin_cash">
+    <a class="explore-card-wrap mt-5">
         <div class="explore-card-content">
             <div class="explore-card__header"> <img src="https://loutre.blockchair.io/assets/svg/chains/bitcoin-cash.svg?_nocache=1" class="explore-card__header__logo" loading="lazy" />
                 <div class="explore-card__header__text ml-15">
@@ -122,7 +122,7 @@
         </div>
     </a>
 
-    <a class="explore-card-wrap mt-5" href="/litecoin">
+    <a class="explore-card-wrap mt-5">
         <div class="explore-card-content">
             <div class="explore-card__header"> <img src="https://loutre.blockchair.io/assets/svg/chains/litecoin.svg?_nocache=1" class="explore-card__header__logo" loading="lazy" />
                 <div class="explore-card__header__text ml-15">
